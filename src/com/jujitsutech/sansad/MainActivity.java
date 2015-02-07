@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.jujitsutech.sansad.fragment.BillsInParliament;
+import com.jujitsutech.sansad.fragment.Headlines;
+import com.jujitsutech.sansad.fragment.KnowYourRepresentative;
 
 public class MainActivity extends Activity implements
 		NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -47,10 +49,27 @@ public class MainActivity extends Activity implements
 	public void onNavigationDrawerItemSelected(int position) {
 		// update the main content by replacing fragments
 		FragmentManager fragmentManager = getFragmentManager();
-		fragmentManager
-				.beginTransaction()
-				.replace(R.id.container,
-						BillsInParliament.newInstance()).commit();
+		switch (position) {
+		case 0:
+			fragmentManager
+			.beginTransaction()
+			.replace(R.id.container,
+					Headlines.newInstance()).commit();
+		default:
+			break;
+		case 1:
+			fragmentManager
+			.beginTransaction()
+			.replace(R.id.container,
+					BillsInParliament.newInstance()).commit();
+			break;
+		case 2:
+			fragmentManager
+			.beginTransaction()
+			.replace(R.id.container,
+					KnowYourRepresentative.newInstance()).commit();
+			break;
+		}
 	}
 
 	public void onSectionAttached(int number) {
