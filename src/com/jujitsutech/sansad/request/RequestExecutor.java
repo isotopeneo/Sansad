@@ -15,9 +15,8 @@ import com.jujitsutech.sansad.util.LoggerClass;
 
 public class RequestExecutor {
 	
-	private String responseText;
-	
-	public String makeGetRequest(String url) {
+	public static String makeGetRequest(String url) {
+		String responseText = "";
 		try {
 			DefaultHttpClient httpclient = new DefaultHttpClient();
 			HttpGet httpgetreq = new HttpGet(url);

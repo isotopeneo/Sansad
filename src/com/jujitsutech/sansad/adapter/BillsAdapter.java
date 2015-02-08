@@ -1,23 +1,32 @@
 package com.jujitsutech.sansad.adapter;
 
+import java.util.List;
+
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import com.jujitsutech.sansad.bean.ParliamentBills;
 import com.jujitsutech.sansad.view.BillsHolderView;
 
 public class BillsAdapter extends BaseAdapter{
 
 	private Context context;
+	private List<ParliamentBills> data;
 	
-	public BillsAdapter(Context context) {
+	public BillsAdapter(Context context, List<ParliamentBills> data) {
 		this.context = context;
+		this.data = data;
 	}
 
 	@Override
 	public int getCount() {
-		return 10;
+		if (null != data) {
+			return data.size();
+		} else {
+			return 0;
+		}
 	}
 
 	@Override
@@ -31,14 +40,14 @@ public class BillsAdapter extends BaseAdapter{
 	}
 
 	@Override
-	public View getView(int arg0, View convertView, ViewGroup arg2) {
+	public View getView(int position, View convertView, ViewGroup arg2) {
 		BillsHolderView holderView;
 		if (null != convertView && convertView instanceof BillsHolderView) {
 			holderView = (BillsHolderView) convertView;
 		} else {
 			holderView = new BillsHolderView(context);
 		}
-		holderView.bindView("Testing" + arg0);
+		holderView.bindView(data.get(position).getTitle());
 		return holderView;
 	}
 
